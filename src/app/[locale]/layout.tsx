@@ -9,7 +9,7 @@ import React from "react";
 import { Inter, Roboto } from 'next/font/google'
 import { Toaster } from "@/components/ui/shadcn/sonner";
 import { Check, Info } from "lucide-react";
-import Footer from "@/components/ui/Footer/footer";
+import { Footer } from "@/components/ui/Footer/footer";
 const roboto = Roboto({ subsets: ['latin'] });
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 export async function generateMetadata(): Promise<Metadata> {

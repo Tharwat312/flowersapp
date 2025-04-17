@@ -16,6 +16,7 @@ import { Form, FormControl, FormField, FormItem, FormMessage } from '@/component
 import useLogin from "./hooks/uselogin"
 import { LoaderCircle } from "lucide-react"
 import trimWhiteSpaces from "@/lib/utils/trimstring"
+import { createLoginSchema } from "@/lib/validations/auth/login-schema"
 export function LoginModal({
     open,
     onOpenChange,
@@ -24,12 +25,7 @@ export function LoginModal({
 
 
     const t = useTranslations();
-    const Schema = z.object({
-        email: z.string({ required_error: t('email-error') }).min(1, t('email-error')).email(t('invalid-email-address')),
-        password: z.string({ required_error: t('password-required') }).min(1, t('password-required'))
-            .regex(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,
-                t('password-validation'))
-    })
+    const Schema = createLoginSchema(t);
     type Inputs = z.infer<typeof Schema>
     const form = useForm<Inputs>({
         defaultValues: {
@@ -38,7 +34,7 @@ export function LoginModal({
         },
         mode: 'onChange',
         resolver: zodResolver(Schema)
-    })
+    });
     const { isPending, login } = useLogin({
         onSuccess: () => {
             onOpenChange?.(false);
