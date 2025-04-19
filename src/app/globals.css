@@ -3,9 +3,22 @@
 
 @custom-variant dark (&:is(.dark *));
 
-@utility container {
-  padding-inline: 80px;
-  margin-inline: auto;
+@layer utilities {
+  .container {
+    margin-inline: auto;
+    padding-inline: 1rem;
+    /* Default small screens */
+
+    /* Custom padding for different breakpoints */
+    @apply sm:px-8;
+    /* small screen */
+    @apply md:px-12;
+    /* medium screen */
+    @apply lg:px-16;
+    /* large screen */
+    @apply xl:px-20;
+    /* extra-large screen */
+  }
 }
 
 @theme {
@@ -20,7 +33,7 @@
   --color-rose-200: #FED5EE;
   --color-rose-100: #FEEAF6;
   --color-main: #160E4B;
-  --color-product-background: #FEEDF7
+  --color-product-background: rgba(254, 237, 247, 0.8);
 }
 
 @theme inline {
@@ -176,3 +189,4 @@ h6 {
     transform: rotate(1turn)
   }
 }
+

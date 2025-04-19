@@ -6,7 +6,7 @@ import useBasePath from '../../hooks/useBasePath'
 import { Menu, Search } from 'lucide-react'
 import LangaugeMenu from '../language-menu/language-menu'
 import { useLocale, useTranslations } from 'use-intl'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { signOut, useSession } from 'next-auth/react'
 import { Button } from "@/components/ui/shadcn/button"
 import { AuthModals } from '../AuthModals/authmodals'
@@ -26,6 +26,18 @@ export default function Navbar() {
     const [open, setIsOpen] = useState(false);
     const { data: session, status } = useSession();
     const locale = useLocale();
+    const [scrolled, setScrolled] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const isScrolled = window.scrollY > 20;
+            setScrolled(isScrolled);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
     const pathNames = [
         { name: t('home'), href: '/' },
         { name: t('all-category'), href: '/categories' },
@@ -56,14 +68,14 @@ export default function Navbar() {
 
     }
     return (
-        <nav className="fixed top-0 left-0 right-0 bg-stone-200 z-10">
-            <div className="container flex items-center justify-between px-4 py-3">
+        <nav className={`fixed top-0 left-0 right-0 z-10 transition-all duration-300 ease-in-out ${scrolled ? 'bg-white/90 backdrop-blur-sm shadow-sm' : 'bg-transparent'}`}>
+            <div className="container flex items-center justify-between py-3">
                 <div className="flex items-center gap-x-2">
                     <Image
                         src="/images/logo-bg.png"
                         alt="Rose Website Logo"
-                        width={60}
-                        height={60}
+                        width={86}
+                        height={86}
                     />
                 </div>
 
@@ -73,7 +85,7 @@ export default function Navbar() {
                         <li key={index} className="p-3">
                             <Link
                                 className={`${baseBase === path.href ? 'text-rose-950' : 'text-[#160E4B]'}`}
-                                href={`${locale}${path.href}`}
+                                href={`/${locale}${path.href}`}
                             >
                                 {path.name}
                             </Link>
