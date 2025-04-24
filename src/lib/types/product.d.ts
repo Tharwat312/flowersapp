@@ -3,4 +3,5 @@ declare type Product = {
     title: string;
     price: number;
     imgCover: string;
+    description: string;
 }

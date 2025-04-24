@@ -3,7 +3,7 @@ import Image from 'next/image'
 // import logo from './public/images/logo-bg.png'
 import Link from 'next/link'
 import useBasePath from '../../hooks/useBasePath'
-import { Menu, Search } from 'lucide-react'
+import { Menu, Search, ShoppingBag } from 'lucide-react'
 import LangaugeMenu from '../language-menu/language-menu'
 import { useLocale, useTranslations } from 'use-intl'
 import { useState, useEffect } from 'react'
@@ -123,14 +123,15 @@ export default function Navbar() {
                                 {status !== 'loading' && !session && (
                                     <AuthModals open={open} onOpenChange={setIsOpen} />
                                 )}
-                                {status === 'authenticated' && (
+                                {status === 'authenticated' && <>
                                     <Button
                                         onClick={logUserOut}
                                         className="bg-rose-950 hover:bg-rose-900 text-white rounded-[30px] px-[20px] py-[8px]"
                                     >
                                         {t('sign-out')}
                                     </Button>
-                                )}
+                                    <Link href={"/cart"}><ShoppingBag /></Link>
+                                </>}
                                 <LangaugeMenu />
                             </ul>
                         </SheetContent>
@@ -143,14 +144,15 @@ export default function Navbar() {
                     {status !== 'loading' && !session && (
                         <AuthModals open={open} onOpenChange={setIsOpen} />
                     )}
-                    {status === 'authenticated' && (
+                    {status === 'authenticated' && <>
                         <Button
                             onClick={logUserOut}
                             className="bg-rose-950 hover:bg-rose-900 text-white rounded-[30px] px-[20px] py-[8px]"
                         >
                             {t('sign-out')}
                         </Button>
-                    )}
+                        <Link href={"/cart"}><ShoppingBag className='text-rose-950' /></Link>
+                    </>}
                     <LangaugeMenu />
                 </div>
             </div>

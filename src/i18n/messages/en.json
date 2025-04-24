@@ -43,5 +43,13 @@
   "faqs": "Faqs",
   "policy": "policy",
   "delivery": "delivery",
-  "store-location": "Store Location"
+  "store-location": "Store Location",
+  "cart-header": "Cart Summary",
+  "price-discount": "Total Price Before Discount:",
+  "discount": "Discount:",
+  "shipping": "Shipping:",
+  "free": "Free",
+  "total-price": "Total Price:",
+  "checkout-now": "Checkout Now",
+  "egp": "EGP"
 }

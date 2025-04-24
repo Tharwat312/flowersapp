@@ -13,7 +13,7 @@ import { SubmitHandler, useForm } from "react-hook-form"
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/shadcn/form'
-import { LoaderCircle } from "lucide-react"
+import { Loader } from "lucide-react"
 import trimWhiteSpaces from "@/lib/utils/trimstring"
 import useRegister from "./hooks/useregister"
 import { createRegisterSchema } from "@/lib/validations/auth/register-schema"
@@ -137,7 +137,7 @@ export function RegisterModal({
                             </p>
                             <Button
                                 disabled={isPending || (!form.formState.isValid && form.formState.isSubmitted)}
-                                className="bg-rose-950 main-hover block w-full" type="submit">{isPending ? <LoaderCircle className="loader" /> : t('create-account')}</Button>
+                                className="bg-rose-950 main-hover flex w-full justify-center" type="submit">{isPending ? <Loader color="#000000" className="loader" /> : t('create-account')}</Button>
                         </DialogFooter>
                     </form>
                 </Form>

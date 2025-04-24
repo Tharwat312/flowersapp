@@ -39,5 +39,13 @@
   "faqs": "الأسئلة الشائعة",
   "policy": "سياسة",
   "delivery": "توصيل",
-  "store-location": "موقع المتجر"
+  "store-location": "موقع المتجر",
+  "cart-header": "ملخص العربة",
+  "price-discount": "إجمالي السعر قبل الخصم:",
+  "discount": "تخفيض:",
+  "shipping": "شحن:",
+  "free": "حر",
+  "total-price": "السعر الإجمالي:",
+  "checkout-now": "الخروج الآن",
+  "egp": "ج.م."
 }
