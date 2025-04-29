@@ -7,20 +7,15 @@ import AddToCartButton from "@/components/ui/AddToCartBtn/AddToCartButton";
 interface ProductProps {
     product: {
         _id: string;
-        title: string;
-        price: number;
-        priceAfterDiscount?: number;
-        description: string;
         quantity: number;
     };
 }
 
 export default function ProductButtons({ product }: ProductProps) {
     const [quantity, setQuantity] = useState(1);
-
-    return (<>
-        <Quantity maxQuantity={product.quantity} onQuantityChange={setQuantity} />
-        <AddToCartButton product={product._id} quantity={quantity} />
-    </>
-    );
+        return (<>
+            <Quantity maxQuantity={product.quantity} onQuantityChange={setQuantity} />
+            <AddToCartButton product={product._id} quantity={quantity} />
+        </>
+        );
 }

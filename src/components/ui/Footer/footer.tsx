@@ -8,7 +8,7 @@ export function Footer() {
         { name: "Contact", href: "/contact" },
         { name: "Delivery", href: "/delivery" },
         { name: "Policy", href: "/policy" },
-        { name: "FAQS", href: "/faq" },
+        { name: "FAQS", href: "/faqs" },
     ]
 
     return (

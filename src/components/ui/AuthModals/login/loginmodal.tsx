@@ -17,13 +17,13 @@ import useLogin from "./hooks/uselogin"
 import { Loader } from "lucide-react"
 import trimWhiteSpaces from "@/lib/utils/trimstring"
 import { createLoginSchema } from "@/lib/validations/auth/login-schema"
+import { useAuthModal } from "@/stores/auth"
 export function LoginModal({
     open,
     onOpenChange,
     onRegisterClick
 }: LoginModalProps) {
-
-
+    const { isOpen, closeModal } = useAuthModal();
     const t = useTranslations();
     const Schema = createLoginSchema(t);
     type Inputs = z.infer<typeof Schema>

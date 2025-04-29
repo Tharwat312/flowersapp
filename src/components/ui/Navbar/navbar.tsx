@@ -1,6 +1,5 @@
 'use client'
 import Image from 'next/image'
-// import logo from './public/images/logo-bg.png'
 import Link from 'next/link'
 import useBasePath from '../../hooks/useBasePath'
 import { Menu, Search, ShoppingBag } from 'lucide-react'
@@ -17,6 +16,7 @@ import {
     SheetHeader,
     SheetTrigger,
 } from "@/components/ui/shadcn/sheet"
+import { useCartStore } from '@/stores/cart'
 
 
 
@@ -27,7 +27,7 @@ export default function Navbar() {
     const { data: session, status } = useSession();
     const locale = useLocale();
     const [scrolled, setScrolled] = useState(false);
-
+    const cartItemsNumber = useCartStore((state) => state.numOfCartItems ?? 0);
     useEffect(() => {
         const handleScroll = () => {
             const isScrolled = window.scrollY > 20;
@@ -37,7 +37,6 @@ export default function Navbar() {
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
-
     const pathNames = [
         { name: t('home'), href: '/' },
         { name: t('all-category'), href: '/categories' },
@@ -78,13 +77,12 @@ export default function Navbar() {
                         height={86}
                     />
                 </div>
-
                 {/* Desktop Nav Links */}
                 <ul className="hidden md:flex items-center justify-center">
                     {pathNames.map((path, index) => (
                         <li key={index} className="p-3">
                             <Link
-                                className={`${baseBase === path.href ? 'text-rose-950' : 'text-[#160E4B]'}`}
+                                className={`${baseBase === path.href ? 'text-rose-950' : 'text-[#160E4B] hover:text-rose-900 transition-colors'}`}
                                 href={`/${locale}${path.href}`}
                             >
                                 {path.name}
@@ -92,7 +90,6 @@ export default function Navbar() {
                         </li>
                     ))}
                 </ul>
-
                 {/* Mobile Menu - Hamburger + Sheet */}
                 <div className="md:hidden flex items-center gap-2">
                     <Sheet>
@@ -151,7 +148,13 @@ export default function Navbar() {
                         >
                             {t('sign-out')}
                         </Button>
-                        <Link href={"/cart"}><ShoppingBag className='text-rose-950' /></Link>
+                        <Link className='relative' href={"/cart"}><ShoppingBag className='text-rose-950' />
+                            {cartItemsNumber > 0 && (
+                                <span className="absolute -top-4 -right-2 bg-rose-950 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
+                                    {cartItemsNumber}
+                                </span>
+                            )}
+                        </Link>
                     </>}
                     <LangaugeMenu />
                 </div>

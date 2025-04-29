@@ -51,5 +51,7 @@
   "free": "Free",
   "total-price": "Total Price:",
   "checkout-now": "Checkout Now",
-  "egp": "EGP"
+  "egp": "EGP",
+  "clear-cart": "Clear Cart",
+  "terms-and-conditions-of-use": "Terms and conditions of use"
 }

@@ -1,13 +1,12 @@
 "use client"
 import useProducts from "./hooks/useProducts";
-import { Button } from "@/components/ui/shadcn/button"
 import {
     Card,
     CardContent,
     CardFooter,
 } from "@/components/ui/shadcn/card"
 import Image from "next/image";
-import { Heart, ShoppingBag } from "lucide-react";
+import { Heart } from "lucide-react";
 import Link from "next/link";
 import AddToCartButton from "../AddToCartBtn/AddToCartButton";
 

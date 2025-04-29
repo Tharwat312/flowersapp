@@ -1,4 +1,4 @@
-import ProductButtons from "@/components/ui/Products/ProductButtons";
+import ProductButtons from "@/components/ui/Products/ProductDetailsButtons";
 import ProductsCarousel from "@/components/ui/ProductsCarousel/ProductsCarousel";
 async function getProductDetails(id: string) {
     try {

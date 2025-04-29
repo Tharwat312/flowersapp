@@ -1,10 +1,12 @@
+import { useCartStore } from "@/stores/cart";
 import { useMutation } from "@tanstack/react-query";
 import { signIn } from "next-auth/react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 
-export default function useLogin({ onSuccess }: { onSuccess: () => void }) {
+export default function useLogin({ }) {
     const t = useTranslations();
+    const getUserCart = useCartStore((state) => state.getUserCart);
     const { isPending, error, mutate } = useMutation({
         mutationFn: async ({ email, password }: { email: string, password: string }) => {
             const response = await signIn('credentials', {
@@ -21,7 +23,8 @@ export default function useLogin({ onSuccess }: { onSuccess: () => void }) {
             return response;
         },
         onSuccess: () => {
-            toast.success(t('login-success'))
+            toast.success(t('login-success'));
+            getUserCart();
         },
         onError: (error) => {
             console.log(error);

@@ -1,10 +1,12 @@
 'use client';
 
 import { Button } from "@/components/ui/shadcn/button";
+import { useCartStore } from "@/stores/cart";
 import { Loader, ShoppingBag } from "lucide-react";
+import { useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
 import { toast } from "sonner";
-import { useAddToCart } from "../Products/hooks/useAddToCart";
 
 interface AddToCartButtonProps {
     product: string;
@@ -13,28 +15,36 @@ interface AddToCartButtonProps {
 
 function AddToCartButton({ product, quantity }: AddToCartButtonProps) {
     const pathName = usePathname();
-    const { mutate, isPending } = useAddToCart();
-
-    const addToCart = () => {
-        mutate(
-            { product, quantity },
-            {
-                onSuccess: () => toast.success("Product added to cart successfully!"),
-                onError: () => toast.error("Failed to add to cart."),
-            }
-        );
+    const [isLoading, setIsLoading] = useState(false);
+    const addProduct = useCartStore((state) => state.addProduct);
+    const { data: session } = useSession();
+    const handleAddToCart = async () => {
+        if (!session) {
+            toast.error("Please log in to add items to cart.");
+            return;
+        }
+        setIsLoading(true);
+        try {
+            await addProduct({ product, quantity });
+            toast.success("Product added to cart successfully!");
+        } catch (error) {
+            toast.error("Failed to add to cart.");
+        }
+        finally {
+            setIsLoading(false);
+        }
     };
     if (pathName.includes("/product/")) return <Button
-        onClick={addToCart}
+        onClick={handleAddToCart}
         className="px-6 py-2 bg-rose-500 text-white rounded-md hover:bg-rose-600 transition"
     >
-        {isPending ? <Loader /> : 'Add to Cart'}
+        {isLoading ? <Loader /> : 'Add to Cart'}
     </Button>
     return (
         <Button className="w-[42px] h-[42px] bg-[#8C52FF] hover:bg-[#bd9cff] rounded-full cursor-pointer"
-            onClick={addToCart} disabled={isPending}
+            onClick={handleAddToCart} disabled={isLoading}
         >
-            {isPending ? <Loader /> : <ShoppingBag color="#ffffff" />}
+            {isLoading ? <Loader /> : <ShoppingBag color="#ffffff" />}
         </Button>
     );
 }

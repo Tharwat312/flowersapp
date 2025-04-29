@@ -1,3 +1,4 @@
+import { useCartStore } from "@/stores/cart";
 import { useMutation } from "@tanstack/react-query";
 
 type AddToCartPayload = {
@@ -6,6 +7,7 @@ type AddToCartPayload = {
 }
 
 export function useAddToCart() {
+    const getUserCart = useCartStore((state) => state.getUserCart);
     return useMutation({
         mutationFn: async ({ product, quantity }: AddToCartPayload) => {
             const res = await fetch("/api/cart/add", {
@@ -15,8 +17,9 @@ export function useAddToCart() {
                 },
                 body: JSON.stringify({ product, quantity }),
             });
-
             const data = await res.json();
+            console.log(data);
+            getUserCart();
             if (!res.ok || data.status !== true) {
                 throw new Error(data?.message || "Failed to add to cart");
             }

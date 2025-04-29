@@ -1,27 +1,37 @@
 'use client';
 
-import { CircleX } from "lucide-react";
+import { CircleX, Loader } from "lucide-react";
 import { Button } from "../shadcn/button";
+import { useCartStore } from "@/stores/cart";
+import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 
 export default function DeleteItem({ productId }: { productId: string }) {
     const router = useRouter();
-    const deleteItem = async (id: string) => {
+    const [isLoading, setIsLoading] = useState(false);
+    const deleteProduct = useCartStore((state) => state.deleteProduct);
+    const handleDelete = async (id: string) => {
+        setIsLoading(true);
         try {
-            const res = await fetch(`/api/cart/delete/${id}`, { method: 'DELETE' });
-            if (!res.ok) return null
-            const payload = await res.json();
-            console.log(payload);
+            await deleteProduct(id);
+            toast.success("Producted Deleted Succesfully");
             router.refresh();
-            return payload;
         } catch (error) {
-            console.log(error);
+            console.error("Error in handleDelete:", error);
+            alert("An error occurred while deleting the product.");
+        }
+        finally {
+            setIsLoading(false);
         }
     }
     return (
         <Button
             className="bg-white hover:bg-rose-200 cursor-pointer"
-            onClick={() => deleteItem(productId)}><CircleX className="text-rose-950" /></Button>
+            disabled={isLoading}
+            onClick={() => handleDelete(productId)}>
+            {isLoading ? <Loader className="text-black" /> :
+                <CircleX className="text-rose-950" />}</Button>
     )
 }

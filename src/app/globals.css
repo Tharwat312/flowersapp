@@ -33,6 +33,7 @@
   --color-rose-200: #FED5EE;
   --color-rose-100: #FEEAF6;
   --color-main: #160E4B;
+  --color-text: #797979;
   --color-product-background: rgba(254, 237, 247, 0.8);
 }
 
@@ -189,4 +190,3 @@ h6 {
     transform: rotate(1turn)
   }
 }
-
