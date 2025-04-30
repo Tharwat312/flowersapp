@@ -8,7 +8,9 @@ const publicBasePaths = [
     '/',
     '/login',
     '/register',
-    '/about',
+    '/contact',
+    '/policy',
+    '/faqs'
 ];
 
 

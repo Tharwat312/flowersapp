@@ -39,8 +39,6 @@ export default function Navbar() {
     }, []);
     const pathNames = [
         { name: t('home'), href: '/' },
-        { name: t('all-category'), href: '/categories' },
-        { name: t('about'), href: '/about' },
         { name: t('contact'), href: '/contact' },
     ]
     const logUserOut = async () => {
