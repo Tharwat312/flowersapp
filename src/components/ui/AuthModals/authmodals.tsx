@@ -2,12 +2,7 @@ import { useState } from 'react';
 import { LoginModal } from './login/loginmodal';
 import { RegisterModal } from './register/registermodal';
 
-export function AuthModals({
-    open,
-    onOpenChange,
-    onRegisterClick,
-    onLoginClick,
-}: AuthModalsProps) {
+export function AuthModals() {
     const [isLoginOpen, setIsLoginOpen] = useState(false);
     const [isRegisterOpen, setIsRegisterOpen] = useState(false);
 

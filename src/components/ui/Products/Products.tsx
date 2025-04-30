@@ -11,7 +11,7 @@ import Link from "next/link";
 import AddToCartButton from "../AddToCartBtn/AddToCartButton";
 
 export default function Products() {
-    const { data, isError, isLoading } = useProducts();
+    const { data } = useProducts();
     return (
         <div className="min-h-screen">
             <div className="mb-10">

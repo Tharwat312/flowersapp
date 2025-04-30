@@ -28,6 +28,7 @@ function AddToCartButton({ product, quantity }: AddToCartButtonProps) {
             await addProduct({ product, quantity });
             toast.success("Product added to cart successfully!");
         } catch (error) {
+            console.log(error);
             toast.error("Failed to add to cart.");
         }
         finally {
