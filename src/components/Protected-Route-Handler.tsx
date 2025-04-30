@@ -19,7 +19,7 @@ export default function ProtectedRouteHandler() {
         if (showLogin && !session && status === 'unauthenticated') {
             toast.error(t('not-logged-in'));
         }
-    }, [showLogin, session, status]);
+    }, [showLogin, session, status, t]);
     useEffect(() => {
         if (status !== 'loading' && session && redirect) {
             router.push(redirect);

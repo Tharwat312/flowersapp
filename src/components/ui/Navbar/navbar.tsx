@@ -23,7 +23,6 @@ import { useCartStore } from '@/stores/cart'
 export default function Navbar() {
     const t = useTranslations()
     const baseBase = useBasePath();
-    const [open, setIsOpen] = useState(false);
     const { data: session, status } = useSession();
     const locale = useLocale();
     const [scrolled, setScrolled] = useState(false);
@@ -116,7 +115,7 @@ export default function Navbar() {
                                     </li>
                                 ))}
                                 {status !== 'loading' && !session && (
-                                    <AuthModals open={open} onOpenChange={setIsOpen} />
+                                    <AuthModals />
                                 )}
                                 {status === 'authenticated' && <>
                                     <Button
@@ -137,7 +136,7 @@ export default function Navbar() {
                 <div className="hidden md:flex items-center gap-x-2">
                     <Search color="#F82BA9" />
                     {status !== 'loading' && !session && (
-                        <AuthModals open={open} onOpenChange={setIsOpen} />
+                        <AuthModals  />
                     )}
                     {status === 'authenticated' && <>
                         <Button

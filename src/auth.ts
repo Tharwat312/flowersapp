@@ -1,6 +1,6 @@
 import Credentials from "next-auth/providers/credentials";
 import { LoginResponse } from "./lib/types/auth";
-import { NextAuthOptions, User } from "next-auth";
+import { NextAuthOptions } from "next-auth";
 export const authOptions: NextAuthOptions = {
     pages: {
         signIn: "/",
@@ -34,27 +34,14 @@ export const authOptions: NextAuthOptions = {
     callbacks: {
         jwt: ({ token, user }) => {
             if (user) {
-                const customUser = user as User & { user: any; token: string };
-                token.user = customUser.user
-                token.token = customUser.token
+                token.user = user.user;
+                token.token = user.token;
             }
             return token;
         },
         session: ({ session, token }) => {
             if (token.user) {
-                session.user = token.user as {
-                    id: string;
-                    email: string;
-                    name?: string;
-                    firstName: string;
-                    lastName: string;
-                    gender: "male" | "female";
-                    phone: string;
-                    photo: string | null;
-                    role: "user" | "admin";
-                    wishlist: [];
-                    addresses: [];
-                };
+                session.user = token.user;
             }
             return session;
         }

@@ -6,4 +6,3 @@ type AuthModalProps = {
 };
 type LoginModalProps = AuthModalProps;
 type RegisterModalProps = AuthModalProps;
-type AuthModalsProps = AuthModalProps;
