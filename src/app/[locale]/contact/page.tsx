@@ -2,7 +2,7 @@ import { Mail, Phone, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/shadcn/button";
 import { Input } from "@/components/ui/shadcn/input";
 import { Textarea } from "@/components/ui/shadcn/textarea";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/shadcn/card";
+import { Card, CardContent,} from "@/components/ui/shadcn/card";
 
 export default function Page() {
     return (
