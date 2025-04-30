@@ -5,18 +5,12 @@ import { routing } from './i18n/routing';
 
 // 1. Define base public paths WITHOUT locales
 const publicBasePaths = [
-    '/',          // Homepage
-    '/login',     // Login
-    '/register',  // Registration
-    '/about',     // Example public page
-    // Add all other public routes here
+    '/',
+    '/login',
+    '/register',
+    '/about',
 ];
 
-// const publicPages = publicBasePaths.flatMap(path =>
-//     routing.locales.map(locale =>
-//         `/${locale}${path === '/' ? '' : path}`
-//     )
-// );
 
 const handleI18nRouting = createMiddleware(routing);
 export default function middleware(req: NextRequest) {
