@@ -37,7 +37,7 @@ export function Footer() {
                 {/* Newsletter Section */}
                 <div className="max-w-md mx-auto mb-8">
                     <h3 className="text-2xl font-bold text-white mb-2">
-                        Get <span className="text-primary">20% Off</span> Discount Coupon Test
+                        Get <span className="text-primary">20% Off</span> Discount Coupon
                     </h3>
                     <h4 className="text-gray-300 mb-4">By Subscribe Our Newsletter</h4>
 
